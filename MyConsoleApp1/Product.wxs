@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Product Id="*"
+           Name="ConsoleApp1"
+           Language="1033"
+           Version="1.0.0.0"
+           Manufacturer="Namera Nayat"
+           UpgradeCode="f3755645-a5f2-4813-91c4-a551c90947b2">
+
+    <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    <MediaTemplate EmbedCab="yes" />
+
+    <Feature Id="ProductFeature" Title="ConsoleApp1" Level="1">
+      <ComponentGroupRef Id="ProductComponents" />
+    </Feature>
+  </Product>
+
+  <!-- Install folder -->
+  <Fragment>
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="INSTALLFOLDER" Name="ConsoleApp1" />
+      </Directory>
+    </Directory>
+  </Fragment>
+
+  <!-- Files to install -->
+  <Fragment>
+    <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+
+      <!-- Main EXE (project name: ConsoleApp1) -->
+      <Component Id="cmp_ConsoleApp1_exe" Guid="788040EE-955F-4328-9130-9A692995C54D">
+        <File Id="fil_ConsoleApp1_exe"
+              Name="ConsoleApp1.exe"
+              Source="$(var.ConsoleApp1.TargetDir)ConsoleApp1.exe" />
+      </Component>
+
+      <!-- DLL 01 (project name: DLLMathLib) -->
+      <Component Id="cmp_DLLMathLib_dll" Guid="CED3121C-D4A2-4BE9-B271-A899FC5BB5A4">
+        <File Id="fil_DLLMathLib_dll"
+              Name="DLLMathLib.dll"
+              Source="$(var.DLLMathLib.TargetDir)DLLMathLib.dll" />
+      </Component>
+
+      <!-- DLL 02 (project name: DLLMathProj02) -->
+      <Component Id="cmp_DLLMathProj02_dll" Guid="9E625B11-C37E-44CC-BA66-2F02D2915C74">
+        <File Id="fil_DLLMathProj02_dll"
+              Name="DLLMathProj02.dll"
+              Source="$(var.DLLMathProj02.TargetDir)DLLMathProj02.dll" />
+      </Component>
+
+      <!-- DLL 03 (project name: DLLMathProj03) -->
+      <Component Id="cmp_DLLMathProj03_dll" Guid="ED0CBF57-984D-4E6C-9263-C7D1939B4D7D">
+        <File Id="fil_DLLMathProj03_dll"
+              Name="DLLMathProj03.dll"
+              Source="$(var.DLLMathProj03.TargetDir)DLLMathProj03.dll" />
+      </Component>
+
+    </ComponentGroup>
+  </Fragment>
+</Wix>
