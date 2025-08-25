@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Product Id="*" Name="SetupProject1" Language="1033" Version="1.0.0.0" Manufacturer="Namera Nayat" UpgradeCode="ea6cdff6-1f5c-4099-9502-ad7458e456bd">
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+
+		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+		 <MediaTemplate EmbedCab="yes" />
+
+		<Feature Id="ProductFeature" Title="SetupProject1" Level="1">
+			<ComponentGroupRef Id="ProductComponents" />
+		</Feature>
+	</Product>
+
+	<Fragment>
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+				<Directory Id="MyFirstTask" Name="SetupProject1" />
+			</Directory>
+		</Directory>
+	</Fragment>
+
+	<Fragment>
+		<ComponentGroup Id="ProductComponents" Directory="MyFirstTask">
+			<!-- TODO: Remove the comments around this Component element and the ComponentRef below in order to add resources to this installer. -->
+      <Component Id="FirstTask.exe" Guid="CB815A6F-6E4C-4AC0-8A3B-0CD0DC6DCD5D" >
+        <File Id="FirstTask.exe" Name="FirstTask.exe" Source="$(var.FirstTask.TargetDir)FirstTask.exe"
+></File>
+      </Component>
+    </ComponentGroup>
+	</Fragment>
+</Wix>
